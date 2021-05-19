@@ -65,20 +65,19 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
         String result = "";
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost("https://opslevel-jason.ngrok.io/integrations/deploy/ba439766-bbbd-4596-8114-7789fef7920a");
-        httppost.addHeader("content-type", "application/x-www-form-urlencoded");
+        httppost.addHeader("content-type", "application/json");
 
         DateTimeFormatter dtf = DateTimeFormatter.ISO_INSTANT;
         String now = ZonedDateTime.now().format(dtf);
 
         // Build the JSON string
         JsonObject json = Json.createObjectBuilder()
-            .add("service", "test_cart")
-            .add("deployer", Json.createObjectBuilder()
-                .add("email", "jason@opslevel.com"))
-            .add("deployed_at", now)
-            .add("description", "Deployed By Jenkins")
-            .build();
-
+                .add("service", "test_cart")
+                .add("deployer", Json.createObjectBuilder()
+                        .add("email", "jason@opslevel.com"))
+                .add("deployed_at", now)
+                .add("description", "Deployed By Jenkins")
+                .build();
 
         // send a JSON data
         String json_string = json.toString();
@@ -118,5 +117,4 @@ public class HelloWorldBuilder extends Builder implements SimpleBuildStep {
         }
 
     }
-
 }

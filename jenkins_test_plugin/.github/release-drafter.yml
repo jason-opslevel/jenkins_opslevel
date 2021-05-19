@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: jenkins_test_plugin-$NEXT_MINOR_VERSION
